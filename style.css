@@ -1,0 +1,48 @@
+:root {
+    --spacing: 1.5em;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+}
+
+button {
+    background-color: white;
+    border: none;
+    font-family: inherit;
+}
+
+#play-btn {
+    fill: #56ff5e;
+    width: 30px;
+    padding: 0;
+    /* outline: orangered solid 2px; */
+}
+
+.ccc {
+    background-color: black; 
+    width: 150px;
+    color: white; 
+    padding: 0 var(--spacing);
+    position: relative;
+    overflow: hidden;
+  }
+.slide {
+    /* background: url(slideshow.jpg); */
+    /* background-color: violet; */
+    position: absolute;
+    left: 0;
+    top: var(--spacing);
+    width: 100%;
+    animation: slide 5s linear infinite;
+    /* animation: slide 5s linear; */
+  }
+  @keyframes slide {
+    0%    { transform: translateX(0) }
+    100%  { transform: translateX(70%) }
+  }
