@@ -37,6 +37,10 @@ document.addEventListener("DOMContentLoaded", function(){
     const _volumeSlider = document.getElementById("volumeslider");
     const _seekSlider = document.getElementById("seekslider");
 
+    // Init
+    _seekSlider.value = 0;
+    _volumeSlider.value = 30;
+    
     // Functions
     const playPause = () => {
         console.log('control-btn clicked !');
@@ -63,11 +67,13 @@ document.addEventListener("DOMContentLoaded", function(){
     
     document.getElementById('listen').addEventListener('click', function() {
         console.log('Listen btn clicked!');
-        _seekSlider.value = 0;
-        _volumeSlider.value = 30;
-        _player.oncanplaythrough = () => { 
-            _seekSlider.max = _player.duration;
+        _player.oncanplaythrough = () => {
+            // TODO: fix seek slider 
+            _seekSlider.max = _player.duration.toFixed(1);
             console.log('duration :::', _player.duration);
+            _seekSlider.step = (_player.duration / 1000);
+            
+            // to fixed = 313.66
         };
         _player.src="/assets/songs/Thriller-Michael_Jackson.mp4";
         playPause();
