@@ -67,6 +67,7 @@
     
     document.getElementById("listen").addEventListener('click', function() {
         console.log('Listen btn clicked!');
+        playing = false;
         _player.oncanplaythrough = () => {
             // TODO: fix seek slider + make it move as song goes
             _seekSlider.max = _player.duration.toFixed(1);
