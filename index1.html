@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>My Custom Audio Player</title>
+</head>
+<body>
+    
+
+<!-- <audio id="audioplayer"
+    src="/assets/songs/Thriller-Michael_Jackson.mp4" 
+    controls="true"
+    class="audio-1"></audio> -->
+
+    <button id="mariah"
+            class="listen-song-btn">Listen to Michael</button>
+
+    <div id="pl-c"></div>
+    <audio id="player"
+        
+        >
+    </audio>
+
+    <!-- Custom player thanks to https://css-tricks.com/infinite-all-css-scrolling-slideshow/ -->
+
+    <!-- Songs dwnl from https://www.mp3juices.cc/ -->
+
+    <!-- svg icons from https://heroicons.com/ -->
+
+    <div class="ccc">
+        <h4> Thriller </h4>
+        <p class="slide"> Michael Jackson </p>
+    </div>
+    <div>
+        <button 
+            class="audio-control"
+            onclick="document.getElementById('player').play()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" 
+            id="play-btn">
+            <!-- fill="currentColor" -->
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+            </svg>
+        </button> 
+        <button 
+            class="audio-control"
+            onclick="document.getElementById('player').pause()">Pause</button> 
+        <button 
+            class="audio-control"
+            onclick="document.getElementById('player').volume += 0.1">Vol +</button> 
+        <button 
+            class="audio-control"
+            onclick="document.getElementById('player').volume -= 0.1">Vol -</button> 
+        <input id="seekslider" type="range" min="0" max="100" value="0" step="1">
+    </div>
+    
+</body>
+</html>
