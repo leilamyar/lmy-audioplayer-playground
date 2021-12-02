@@ -1,42 +1,42 @@
-const playlist = [
-    '/assets/songs/Thriller-Michael_Jackson.mp4',
-    '/assets/songs/Mariah_Carey-All_I_Want_for_Christmas_Is_You.mp4',
-];
+
 
 
 // document.onreadystatechange = function () {
 //     if (document.readyState == "interactive") {
-//         // const __player = document.getElementById('player');    
+//         // const _player = document.getElementById('player');    
         
 //         // const _listen = document.getElementById('mariah');
 
 //         // _listen.addEventListener('click', function() {
-    //         //    __player.src = playlist[1];
-    //         //    __player.play();
+    //         //    _player.src = playlist[1];
+    //         //    _player.play();
     //         // });
     
-    //         // _listen.addEventListener('ended', function() {
-        //         //     console.log('previous song ended, next is coming...');
-        //         //    __player.load();
-        //         //    __player.src = playlist[0];
-        //         //    __player.play();
-        //         // });
-        //     }
-        // }
-
-        
-document.addEventListener("DOMContentLoaded", function(){ 
-    console.log('Script is on');
     
-    // Ref to elem in the DOM
-    let playing = false,
+    
+    
+    document.addEventListener("DOMContentLoaded", function(){ 
+        console.log('Script is on');
+        const playlist = [
+            '/assets/songs/Thriller-Michael_Jackson.mp4',
+            '/assets/songs/Mariah_Carey-All_I_Want_for_Christmas_Is_You.mp4',
+        ];
+        // Ref to elem in the DOM
+        let playing = false,
         seeking = false,
         seekTo;
-    const _player = document.getElementById('player');
-    const _controlBtn = document.getElementById('control-btn');
-    const _volumeSlider = document.getElementById("volumeslider");
-    const _seekSlider = document.getElementById("seekslider");
+        const _player = document.getElementById('player');
+        const _controlBtn = document.getElementById('control-btn');
+        const _volumeSlider = document.getElementById("volumeslider");
+        const _seekSlider = document.getElementById("seekslider");
+        const _listen = document.getElementById("listen");
 
+        _player.addEventListener('ended', function() {
+            console.log('previous song ended, next is coming...');
+            _player.load();
+            _player.src = playlist[1];
+            _player.play();
+        });
     // Init
     _seekSlider.value = 0;
     _volumeSlider.value = 30;
@@ -65,17 +65,17 @@ document.addEventListener("DOMContentLoaded", function(){
     // Handle player events
     _controlBtn.addEventListener('click', playPause);
     
-    document.getElementById('listen').addEventListener('click', function() {
+    document.getElementById("listen").addEventListener('click', function() {
         console.log('Listen btn clicked!');
         _player.oncanplaythrough = () => {
-            // TODO: fix seek slider 
+            // TODO: fix seek slider + make it move as song goes
             _seekSlider.max = _player.duration.toFixed(1);
             console.log('duration :::', _player.duration);
             _seekSlider.step = (_player.duration / 1000);
             
             // to fixed = 313.66
         };
-        _player.src="/assets/songs/Thriller-Michael_Jackson.mp4";
+        _player.src=playlist[0];
         playPause();
     });
 
