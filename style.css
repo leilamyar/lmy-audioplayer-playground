@@ -25,6 +25,11 @@ button {
     /* outline: orangered solid 2px; */
 }
 
+input#volumeslider{
+	width: 20vw;
+    accent-color: #56ff5e;
+}
+
 .slider-container {
     background-color: black; 
     width: 150px;

@@ -30,23 +30,24 @@ document.addEventListener("DOMContentLoaded", function(){
             
     let playing = false;
     const _player = document.getElementById('player');
-    const _playBtn = document.getElementById('control-btn');
- 
+    const _controlBtn = document.getElementById('control-btn');
+
     const playPause = () => {
         console.log('control-btn clicked !');
         if (!playing) {    
             _player.play();
             playing = true;
-            _playBtn.src = "/assets/images/pause-icon.svg";
+            _controlBtn.src = "/assets/images/pause-icon.svg";
         } else {
             _player.pause();
-            _playBtn.src = "/assets/images/play-icon.svg";
+            _controlBtn.src = "/assets/images/play-icon.svg";
             playing = false;
         }
        
     };
 
-    _playBtn.addEventListener('click', playPause)
+
+    _controlBtn.addEventListener('click', playPause);
 
     document.getElementById('listen').addEventListener('click', function() {
         console.log('Listen btn clicked!', );
@@ -54,5 +55,5 @@ document.addEventListener("DOMContentLoaded", function(){
         playPause();
     });
 
-
+    document.getElementById("volumeslider").addEventListener("mousemove", () => _player.volume = volumeslider.value / 100);
 });
