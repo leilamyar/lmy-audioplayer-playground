@@ -1,61 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-    <title>My Custom Audio Player</title>
+<meta charset="UTF-8">
+<style>
+body{ background:#666; }
+button{ border:none; cursor:pointer; outline:none; }
+input{ outline:none; }
+button#playpausebtn{
+	background:url(images/pause.png) no-repeat;
+	width:12px;
+	height:14px;
+}
+button#mutebtn{
+	background:url(images/speaker.png) no-repeat;
+	width:5px;
+	height:14px;
+}
+input#seekslider{
+	width:100px;
+}
+input#volumeslider{
+	width: 70px;
+}
+input[type='range'] {
+    -webkit-appearance: none !important;
+	margin:0px;
+	padding:0px;
+    background: #000;
+    height:13px;
+	border-bottom:#333 1px solid;
+}
+input[type='range']::-ms-fill-lower  {
+	background:#000;
+}
+input[type='range']::-ms-fill-upper  {
+	background:#000;
+}
+input[type='range']::-moz-range-track {
+	border:none;
+    background: #000;
+}
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    background: radial-gradient(#FFF, #333);
+    height:11px;
+    width:11px;
+	border-radius:100%;
+	cursor:pointer;
+}
+input[type='range']::-moz-range-thumb {
+    background: radial-gradient(#FFF, #333);
+    height:11px;
+    width:11px;
+	border-radius:100%;
+	cursor:pointer;
+}
+input[type='range']::-ms-thumb {
+    -webkit-appearance: none !important;
+    background: radial-gradient(#FFF, #333);
+    height:11px;
+    width:11px;
+	border-radius:100%;
+	cursor:pointer;
+}
+</style>
+<script>
+var audio, playbtn, mutebtn, seekslider, volumeslider, seeking=false, seekto;
+function initAudioPlayer(){
+	audio = new Audio();
+	audio.src = "audio/Stoker.mp3";
+	audio.loop = true;
+	audio.play();
+	// Set object references
+	playbtn = document.getElementById("playpausebtn");
+	mutebtn = document.getElementById("mutebtn");
+	seekslider = document.getElementById("seekslider");
+	volumeslider = document.getElementById("volumeslider");
+	// Add Event Handling
+	playbtn.addEventListener("click",playPause);
+	mutebtn.addEventListener("click", mute);
+	seekslider.addEventListener("mousedown", function(event){ seeking=true; seek(event); });
+	seekslider.addEventListener("mousemove", function(event){ seek(event); });
+	seekslider.addEventListener("mouseup",function(){ seeking=false; });
+	volumeslider.addEventListener("mousemove", setvolume);
+	// Functions
+	function playPause(){
+		if(audio.paused){
+		    audio.play();
+		    playbtn.style.background = "url(images/pause.png) no-repeat";
+	    } else {
+		    audio.pause();
+		    playbtn.style.background = "url(images/play.png) no-repeat";
+	    }
+	}
+	function mute(){
+		if(audio.muted){
+		    audio.muted = false;
+		    mutebtn.style.background = "url(images/speaker.png) no-repeat";
+	    } else {
+		    audio.muted = true;
+		    mutebtn.style.background = "url(images/speaker_muted.png) no-repeat";
+	    }
+	}
+	function seek(event){
+	    if(seeking){
+		    seekslider.value = event.clientX - seekslider.offsetLeft;
+	        seekto = audio.duration * (seekslider.value / 100);
+	        audio.currentTime = seekto;
+	    }
+    }
+	function setvolume(){
+	    audio.volume = volumeslider.value / 100;
+    }
+}
+window.addEventListener("load", initAudioPlayer);
+</script>
 </head>
 <body>
-    
-
-<!-- <audio id="audioplayer"
-    src="/assets/songs/Thriller-Michael_Jackson.mp4" 
-    controls="true"
-    class="audio-1"></audio> -->
-
-    <button id="mariah"
-            class="listen-song-btn">Listen to Michael</button>
-
-    <div id="pl-c"></div>
-    <audio id="player"
-        
-        >
-    </audio>
-
-    <!-- Custom player thanks to https://css-tricks.com/infinite-all-css-scrolling-slideshow/ -->
-
-    <!-- Songs dwnl from https://www.mp3juices.cc/ -->
-
-    <!-- svg icons from https://heroicons.com/ -->
-
-    <div class="ccc">
-        <h4> Thriller </h4>
-        <p class="slide"> Michael Jackson </p>
-    </div>
-    <div>
-        <button 
-            class="audio-control"
-            onclick="document.getElementById('player').play()">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" 
-            id="control-btn">
-            <!-- fill="currentColor" -->
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
-            </svg>
-        </button> 
-        <button 
-            class="audio-control"
-            onclick="document.getElementById('player').pause()">Pause</button> 
-        <button 
-            class="audio-control"
-            onclick="document.getElementById('player').volume += 0.1">Vol +</button> 
-        <button 
-            class="audio-control"
-            onclick="document.getElementById('player').volume -= 0.1">Vol -</button> 
-        <input id="seekslider" type="range" min="0" max="100" value="0" step="1">
-    </div>
-    
+<button id="playpausebtn"></button>
+<input id="seekslider" type="range" min="0" max="100" value="0" step="1">
+<button id="mutebtn"></button>
+<input id="volumeslider" type="range" min="0" max="100" value="100" step="1">
 </body>
 </html>
+
+<!--  comes from https://www.developphp.com/video/JavaScript/Audio-Seek-and-Volume-Range-Slider-Tutorial  -->

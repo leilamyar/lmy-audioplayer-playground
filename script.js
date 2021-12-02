@@ -31,8 +31,8 @@ document.addEventListener("DOMContentLoaded", function(){
     let playing = false;
     const _player = document.getElementById('player');
     const _playBtn = document.getElementById('control-btn');
-    
-    _playBtn.addEventListener('click', function() {
+ 
+    const playPause = () => {
         console.log('control-btn clicked !');
         if (!playing) {    
             _player.play();
@@ -44,5 +44,15 @@ document.addEventListener("DOMContentLoaded", function(){
             playing = false;
         }
        
-    })
+    };
+
+    _playBtn.addEventListener('click', playPause)
+
+    document.getElementById('listen').addEventListener('click', function() {
+        console.log('Listen btn clicked!', );
+        _player.src="/assets/songs/Thriller-Michael_Jackson.mp4";
+        playPause();
+    });
+
+
 });
