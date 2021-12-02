@@ -1,5 +1,6 @@
 :root {
     --spacing: 1.5em;
+    --clr-accent: #56ff5e;
 }
 
 * {
@@ -27,7 +28,12 @@ button {
 
 input#volumeslider{
 	width: 20vw;
-    accent-color: #56ff5e;
+    accent-color: var(--clr-accent);
+}
+
+input#seekslider {
+    accent-color: var(--clr-accent);
+	width:200px;
 }
 
 .slider-container {
