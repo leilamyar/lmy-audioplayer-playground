@@ -17,14 +17,15 @@ button {
     font-family: inherit;
 }
 
-#play-icon {
-    fill: #56ff5e;
+#control-btn {
+    /* fill: #56ff5e; */
     width: 30px;
+    height: 30px;
     padding: 0;
     /* outline: orangered solid 2px; */
 }
 
-.ccc {
+.slider-container {
     background-color: black; 
     width: 150px;
     color: white; 

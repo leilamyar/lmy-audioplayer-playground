@@ -10,7 +10,7 @@ function playPause(){
         playbtn.appendChild(_control);
     } else {
         _audio.pause();
-        playbtn.style.background = "url(/assets/images/play-btn.svg) no-repeat";
+        playbtn.style.background = "url(/assets/images/control-btn.svg) no-repeat";
     }
 }
 function mute(){

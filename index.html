@@ -9,35 +9,22 @@
     <title>My Custom Audio Player</title>
 </head>
 <body>
-    
-
-<!-- <audio id="audioplayer"
-    src="/assets/songs/Thriller-Michael_Jackson.mp4" 
-    controls="true"
-    class="audio-1"></audio> -->
-
-    <audio id="player" src="/assets/songs/Thriller-Michael_Jackson.mp4"></audio>
-
-    <!-- Custom player thanks to https://css-tricks.com/infinite-all-css-scrolling-slideshow/ -->
 
     <!-- Songs dwnl from https://www.mp3juices.cc/ -->
 
     <!-- svg icons from https://heroicons.com/ -->
 
+    <audio id="player" src="/assets/songs/Thriller-Michael_Jackson.mp4"></audio>
+
     <div> 
-        <button id="play-btn">
-            play
-        </button> 
-        <!-- <button onclick="document.getElementById('player').play()">
-            play
-        </button>  -->
-        <button onclick="document.getElementById('player').pause()">Pause</button> 
+        <img id="control-btn"
+        src="/assets/images/play-icon.svg" alt="Play / Pause icon"/>
         <button onclick="document.getElementById('player').volume += 0.1">Vol +</button> 
         <button onclick="document.getElementById('player').volume -= 0.1">Vol -</button> 
     </div>
     
     
-    <div class="ccc">
+    <div class="slider-container">
         <h4> Thriller </h4>
         <p class="slide"> Michael Jackson </p>
     </div>

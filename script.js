@@ -24,15 +24,25 @@ const playlist = [
         //     }
         // }
 
-
+        
 document.addEventListener("DOMContentLoaded", function(){ 
-    console.log('script on');
-    
+    console.log('Script is on');
+            
+    let playing = false;
     const _player = document.getElementById('player');
-    const _playBtn = document.getElementById('play-btn');
+    const _playBtn = document.getElementById('control-btn');
     
-    _playBtn.addEventListener('click', () => {
-        console.log('play btn clicked !');
-        _player.play();
+    _playBtn.addEventListener('click', function() {
+        console.log('control-btn clicked !');
+        if (!playing) {    
+            _player.play();
+            playing = true;
+            _playBtn.src = "/assets/images/pause-icon.svg";
+        } else {
+            _player.pause();
+            _playBtn.src = "/assets/images/play-icon.svg";
+            playing = false;
+        }
+       
     })
 });
